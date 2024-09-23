@@ -2,6 +2,7 @@
 -- List of all default plugins & their definitions
 local default_plugins = {
 
+    'goolord/alpha-nvim',
   "nvim-lua/plenary.nvim",
 
   {
@@ -204,7 +205,7 @@ local default_plugins = {
       dofile(vim.g.base46_cache .. "nvimtree")
       require("nvim-tree").setup(opts)
     end,
-  },
+  }, 
 
   {
     "nvim-telescope/telescope.nvim",
@@ -221,7 +222,7 @@ local default_plugins = {
       local telescope = require "telescope"
       telescope.setup(opts)
 
-      -- load extensions
+            -- load extensions
       for _, ext in ipairs(opts.extensions_list) do
         telescope.load_extension(ext)
       end

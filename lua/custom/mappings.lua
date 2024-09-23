@@ -34,6 +34,29 @@ M.dap = {
             "Step out of section of code"
         },
 
+        ["<leader>dl"] = {
+            function ()
+                require("dap").run_last()
+            end,
+            "Step out of section of code"
+        },
+
+        ["<leader>duc"] = {
+            function()
+                require("dapui").close()
+            end,
+            "Close dapui panels"
+        },
+
+        ["<leader>duo"] = {
+            function()
+                require("dapui").open()
+                require("nvim-tree.api").tree.close()
+            end,
+            "Open dapui panels"
+        },
+
+
         -- Ovveride Ctrl-z to do nothing because it closes the app automatically  
         ["<C-z>"] = {
             function()

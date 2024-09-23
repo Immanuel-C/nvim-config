@@ -1,38 +1,5 @@
 local plugins = {
     {
-      "goolord/alpha-nvim",
-      dependencies = {
-        "nvim-tree/nvim-web-devicons",
-      },
-
-      config = function()
-      local alpha = require("alpha")
-      local dashboard = require("alpha.themes.startify")
-
-      dashboard.section.header.val = {
-        [[                                                                       ]],
-        [[                                                                       ]],
-        [[                                                                       ]],
-        [[                                                                       ]],
-        [[                                                                     ]],
-        [[       ████ ██████           █████      ██                     ]],
-        [[      ███████████             █████                             ]],
-        [[      █████████ ███████████████████ ███   ███████████   ]],
-        [[     █████████  ███    █████████████ █████ ██████████████   ]],
-        [[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
-        [[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
-        [[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
-        [[                                                                       ]],
-        [[                                                                       ]],
-        [[                                                                       ]],
-      }
-
-      alpha.setup(dashboard.opts)
-
-      end,
-    },
-
-    {
       "nvim-neotest/nvim-nio",
       event = "VeryLazy",
     },
@@ -40,15 +7,19 @@ local plugins = {
     {
       "rcarriga/nvim-dap-ui",
       event = "VeryLazy",
-      dependencies = "mfussenegger/nvim-dap",
+      dependencies = {
+            "mfussenegger/nvim-dap",
+            "nvim-neotest/nvim-nio"
+      },
       config = function()
         local dap = require("dap")
         local dapui = require("dapui")
-
+        local api = require("nvim-tree.api")
         dapui.setup()
 
         dap.listeners.after.event_initialized["dapui_config"] = function()
-          dapui.open()
+            dapui.open()
+            api.tree.close()
         end
 
         dap.listeners.before.event_terminated["dapui_config"] = function()
@@ -77,7 +48,8 @@ local plugins = {
   {
     "mfussenegger/nvim-dap",
     config = function(_, _)
-      require("core.utils").load_mappings("dap")
+        require("core.utils").load_mappings("dap")
+        local dap = require("dap")
     end
   },
 
@@ -95,11 +67,28 @@ local plugins = {
       ensure_installed = {
         "clangd",
         "codelldb",
+        "lua-language-server"
       }
     }
-  }
+  },
+
+    {
+        'goolord/alpha-nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        config = function ()
+            require'alpha'.setup(require'alpha.themes.startify'.config)
+        end,
+        lazy = true,
+    },
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        build = "cd app && yarn install",
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        ft = { "markdown" },
+    },
 }
-
-
 
 return plugins

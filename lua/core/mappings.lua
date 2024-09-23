@@ -300,6 +300,7 @@ M.nvterm = {
         ["<A-i>"] = {
             function()
                 require("nvterm.terminal").toggle "float"
+                require("nvim-tree.api").tree.close()
             end,
             "Toggle floating term",
         },
@@ -307,6 +308,7 @@ M.nvterm = {
         ["<A-h>"] = {
             function()
                 require("nvterm.terminal").toggle "horizontal"
+                require("nvim-tree.api").tree.close()
             end,
             "Toggle horizontal term",
         },
@@ -314,6 +316,7 @@ M.nvterm = {
         ["<A-v>"] = {
             function()
                 require("nvterm.terminal").toggle "vertical"
+                require("nvim-tree.api").tree.close()
             end,
             "Toggle vertical term",
         },
@@ -324,6 +327,7 @@ M.nvterm = {
         ["<A-i>"] = {
             function()
                 require("nvterm.terminal").toggle "float"
+                require("nvim-tree.api").tree.close()
             end,
             "Toggle floating term",
         },
@@ -331,6 +335,7 @@ M.nvterm = {
         ["<A-h>"] = {
             function()
                 require("nvterm.terminal").toggle "horizontal"
+                require("nvim-tree.api").tree.close()
             end,
             "Toggle horizontal term",
         },
@@ -338,6 +343,7 @@ M.nvterm = {
         ["<A-v>"] = {
             function()
                 require("nvterm.terminal").toggle "vertical"
+                require("nvim-tree.api").tree.close()
             end,
             "Toggle vertical term",
         },
